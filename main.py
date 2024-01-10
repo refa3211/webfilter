@@ -4,7 +4,6 @@ from get_hosts import clean_hosts, download_hosts_file, github_hosts_url
 from pyuac import main_requires_admin
 
 
-
 class LoginApp:
     @main_requires_admin
     def __init__(self, root):

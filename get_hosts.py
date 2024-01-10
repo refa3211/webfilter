@@ -1,9 +1,12 @@
 import os
-import requests
-from pyuac import main_requires_admin
 
-github_hosts_url = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts"
+import requests
+
+
+github_hosts_url = ("https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn"
+                    "-social-only/hosts")
 clean_hosts = "https://raw.githubusercontent.com/refa3211/webfilter/main/hosts"
+
 
 
 def download_hosts_file(url=github_hosts_url):
