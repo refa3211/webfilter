@@ -12,6 +12,8 @@ Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alte
 
 credentials = {"admin": "admin", "user2": "pass456", "user3": "pass789"}
 
+counter = 0
+
 
 # @main_requires_admin
 def main(page: ft.page) -> None:
@@ -31,14 +33,18 @@ def main(page: ft.page) -> None:
 
     def download_hosts_file(url=full_hosts):
         try:
+            print("try download")
+            toastmessage("Starting Download")
+            page.update()
             response = requests.get(url)
             if response.status_code == 200:
+                print(response.status_code)
                 hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
                 try:
-                    os.system("ipconfig /flushdns")
-                    # print(response.text)
+                    # os.system("ipconfig /flushdns")
                     with open(hosts_path, 'w') as hosts_file:
                         hosts_file.write(response.text)
+                    toastmessage("Hosts file replaced successfully.")
                     print("Hosts file replaced successfully.")
                 except Exception as e:
                     print(f"Error replacing hosts file: {e}")
@@ -65,11 +71,15 @@ def main(page: ft.page) -> None:
     disablebutton: ElevatedButton = ElevatedButton(text="Disable", width=200,
                                                    on_click=lambda e: download_hosts_file(Unified_hosts))
 
+    def toastmessage(text):
+        page.snack_bar = ft.SnackBar(ft.Text(text))
+        page.snack_bar.open = True
+        page.update()
+
     def on_click(e):
+        global counter
         if text_username.value in credentials and credentials[text_username.value] == text_password.value:
-            page.snack_bar = ft.SnackBar(ft.Text("Successful Login"))
-            page.snack_bar.open = True
-            page.update()
+            toastmessage("Successful Login")
             page.clean()
             page.add(
                 Row(
@@ -77,18 +87,20 @@ def main(page: ft.page) -> None:
                         Column([
                             activatebutton,
                             disablebutton
-                        ]
-                        )
+                        ])
                     ], alignment=ft.MainAxisAlignment.CENTER
                 )
             )
 
             page.update()
         else:
-            page.snack_bar = ft.SnackBar(ft.Text("Username or Password not correct!"))
-            page.snack_bar.open = True
-            page.update()
+            print(counter)
+            counter += 1
+            if counter >= 3:
+                page.exit()
+            toastmessage("Username or Password not correct!")
 
+    text_label: Text = Text(value="WebFilter", size=30, text_align=ft.TextAlign.CENTER)
     text_username: TextField = TextField(label='Username', text_align=ft.TextAlign.LEFT, width=200, height=40)
     text_password: TextField = TextField(label='Password', text_align=ft.TextAlign.LEFT, width=200, height=40,
                                          password=True)
@@ -107,6 +119,7 @@ def main(page: ft.page) -> None:
         Row(
             controls=[
                 Column([
+                    text_label,
                     text_username,
                     text_password,
                     button_login
