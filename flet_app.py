@@ -11,6 +11,7 @@ Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alte
 credentials = {"admin": "admin", "user2": "pass456", "user3": "pass789"}
 counter = 0
 
+
 # Decorator to require admin privileges
 @main_requires_admin
 def main(page: ft.page) -> None:
@@ -30,10 +31,12 @@ def main(page: ft.page) -> None:
 
     # Function to back up the hosts file
     def backup():
+        toastmessage("Backup existing file")
         os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
 
     # Function to reset the hosts file
     def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts"):
+        toastmessage("rest file...")
         with open(hosts_path, 'w') as hosts_file:
             hosts_file.write("127.0.0.1 localhost")
             toastmessage("File has been reset")
@@ -41,20 +44,23 @@ def main(page: ft.page) -> None:
     # Function to download hosts file
     def download_hosts_file(url=full_hosts):
         try:
-            toastmessage("Starting Download")
+            toastmessage("Starting Download ...")
             page.update()
             response = requests.get(url)
             if response.status_code == 200:
                 print(response.status_code)
                 hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
                 try:
-                    os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
+                    toastmessage("Loading...")
+                    os.system(
+                        'copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
+                    toastmessage("creating Backup")
                     with open(hosts_path, 'w') as hosts_file:
                         hosts_file.write(response.text)
-                    toastmessage("Hosts file replaced successfully.")
+                    toastmessage("Setting has been applied")
                     print("Hosts file replaced successfully.")
                 except Exception as e:
-                    print(f"Error replacing hosts file: {e}")
+                    print(f"Error while setup settings [61]: {e}")
                     open_dlg(e)
                     page.update()
                     return e
@@ -69,8 +75,10 @@ def main(page: ft.page) -> None:
             print(f"Error downloading hosts file: {e}")
 
     # Buttons
-    activate_button: ElevatedButton = ElevatedButton(text="Activate", width=200, on_click=lambda e: download_hosts_file())
-    disable_button: ElevatedButton = ElevatedButton(text="Disable", width=200, on_click=lambda e: download_hosts_file(Unified_hosts))
+    activate_button: ElevatedButton = ElevatedButton(text="Activate", width=200,
+                                                     on_click=lambda e: download_hosts_file())
+    disable_button: ElevatedButton = ElevatedButton(text="Disable", width=200,
+                                                    on_click=lambda e: download_hosts_file(Unified_hosts))
     backup_button: ElevatedButton = ElevatedButton(text="Backup", width=200, on_click=lambda e: backup())
     hardrest_button: ElevatedButton = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
 
@@ -109,7 +117,8 @@ def main(page: ft.page) -> None:
     # Page components
     text_label: Text = Text(value="WebFilter", size=30, text_align=ft.TextAlign.CENTER)
     text_username: TextField = TextField(label='Username', text_align=ft.TextAlign.LEFT, width=200, height=40)
-    text_password: TextField = TextField(label='Password', text_align=ft.TextAlign.LEFT, width=200, height=40, password=True)
+    text_password: TextField = TextField(label='Password', text_align=ft.TextAlign.LEFT, width=200, height=40,
+                                         password=True)
     button_login: ElevatedButton = ElevatedButton(text="Login", width=200, disabled=True, on_click=on_click)
 
     # Function to validate login fields
@@ -138,6 +147,7 @@ def main(page: ft.page) -> None:
     text_username.on_change = validate
     text_password.on_change = validate
     page.update()
+
 
 # Run the app
 ft.app(target=main)
