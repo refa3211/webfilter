@@ -7,15 +7,15 @@ import os
 import requests
 
 full_hosts = (
-    "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social/hosts")
-Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-porn/hosts"
-
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts")
+Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
+# Unified_hosts = r"C:\Windows\System32\drivers\etc\hosts.txt"
 credentials = {"admin": "admin", "user2": "pass456", "user3": "pass789"}
 
 counter = 0
 
 
-# @main_requires_admin
+@main_requires_admin
 def main(page: ft.page) -> None:
     page.title = 'Login'
     page.vertical_alignment = ft.MainAxisAlignment.CENTER
@@ -23,13 +23,21 @@ def main(page: ft.page) -> None:
     page.window_width = 750
     page.window_height = 600
 
-    # dlg = ft.AlertDialog(title=ft.Text(f"{e}"))
-
     def open_dlg(e):
         dlg = ft.AlertDialog(title=ft.Text(f"{e}"))
         page.dialog = dlg
         dlg.open = True
         page.update()
+
+    def backup():
+        os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
+        # os.system('$p=Tasklist /svc /fi "SERVICES eq windefend" /fo csv | convertfrom-csv')
+        # pid = os.system("taskkill /pid $p.PID /f")
+
+    def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts"):
+        with open(hosts_path, 'w') as hosts_file:
+            hosts_file.write("127.0.0.1 localhost")
+            toastmessage("file has reset")
 
     def download_hosts_file(url=full_hosts):
         try:
@@ -42,6 +50,8 @@ def main(page: ft.page) -> None:
                 hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
                 try:
                     # os.system("ipconfig /flushdns")
+                    os.system(
+                        'copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
                     with open(hosts_path, 'w') as hosts_file:
                         hosts_file.write(response.text)
                     toastmessage("Hosts file replaced successfully.")
@@ -62,14 +72,15 @@ def main(page: ft.page) -> None:
             page.update()
             print(f"Error downloading hosts file: {e}")
 
-    page.snack_bar = ft.SnackBar(
-        content=ft.Text("Hello, world!"),
-        action="Alright!",
-    )
     activatebutton: ElevatedButton = ElevatedButton(text="Activate", width=200,
                                                     on_click=lambda e: download_hosts_file())
     disablebutton: ElevatedButton = ElevatedButton(text="Disable", width=200,
                                                    on_click=lambda e: download_hosts_file(Unified_hosts))
+    backup_button: ElevatedButton = ElevatedButton(text="Backup", width=200,
+                                                   on_click=lambda e: backup())
+
+    hardrest_button: ElevatedButton = ElevatedButton(text="hardrest_button", width=200,
+                                                     on_click=lambda e: hardrest())
 
     def toastmessage(text):
         page.snack_bar = ft.SnackBar(ft.Text(text))
@@ -86,7 +97,9 @@ def main(page: ft.page) -> None:
                     controls=[
                         Column([
                             activatebutton,
-                            disablebutton
+                            disablebutton,
+                            backup_button,
+                            hardrest_button
                         ])
                     ], alignment=ft.MainAxisAlignment.CENTER
                 )
@@ -97,7 +110,7 @@ def main(page: ft.page) -> None:
             print(counter)
             counter += 1
             if counter >= 3:
-                page.exit()
+                exit()
             toastmessage("Username or Password not correct!")
 
     text_label: Text = Text(value="WebFilter", size=30, text_align=ft.TextAlign.CENTER)
