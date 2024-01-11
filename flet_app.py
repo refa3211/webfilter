@@ -3,7 +3,7 @@ from flet import TextField, Checkbox, ElevatedButton, Text, Row, Column
 from flet_core import control, event, ControlEvent
 import os
 import requests
-from pyuac import main_requires_admin
+# from pyuac import main_requires_admin
 
 # Constants
 full_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts"
@@ -13,7 +13,7 @@ counter = 0
 
 
 # Decorator to require admin privileges
-@main_requires_admin
+# @main_requires_admin
 def main(page: ft.page) -> None:
     # Page settings
     page.title = 'Login'
