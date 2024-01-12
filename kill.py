@@ -1,5 +1,6 @@
 import subprocess
 import psutil
+from pyuac import main_requires_admin
 
 
 def get_pid_by_service(service_name):
@@ -20,6 +21,7 @@ def get_pid_by_service(service_name):
         return None
 
 
+@main_requires_admin
 def kill_process_by_pid(pid_to_kill):
     try:
         # Get the process by PID
@@ -31,15 +33,3 @@ def kill_process_by_pid(pid_to_kill):
         print(f"Process with PID {pid_to_kill} terminated successfully.")
     except Exception as e:
         print(f"Error terminating process with PID {pid_to_kill}: {e}")
-
-
-# Replace 'YourServiceName' with the actual name of the Windows service
-# service_name = 'dnscache'
-#
-# pid = get_pid_by_service(service_name)
-#
-# if pid is not None:
-#     print(f"The PID of the service '{service_name}' is {pid}")
-#     # kill_process_by_pid(pid)
-# else:
-#     print(f"Service '{service_name}' not found or an error occurred.")

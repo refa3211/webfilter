@@ -157,6 +157,7 @@ imports:
  &#8226;   <a href="#heapq">heapq</a>
  &#8226;   <a href="#io">io</a>
  &#8226;   <a href="#keyword">keyword</a>
+ &#8226;   <a href="#kill">kill</a>
  &#8226;   <a href="#linecache">linecache</a>
  &#8226;   <a href="#locale">locale</a>
  &#8226;   <a href="#ntpath">ntpath</a>
@@ -171,6 +172,7 @@ imports:
  &#8226;   <a href="#pyi_rth_pythoncom.py">pyi_rth_pythoncom.py</a>
  &#8226;   <a href="#pyi_rth_pywintypes.py">pyi_rth_pywintypes.py</a>
  &#8226;   <a href="#pyi_rth_win32comgenpy.py">pyi_rth_win32comgenpy.py</a>
+ &#8226;   <a href="#pyuac">pyuac</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#re._casefix">re._casefix</a>
  &#8226;   <a href="#re._compiler">re._compiler</a>
@@ -809,8 +811,12 @@ imported by:
  &#8226;   <a href="#cryptography.x509.general_name">cryptography.x509.general_name</a>
  &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
  &#8226;   <a href="#cryptography.x509.oid">cryptography.x509.oid</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
  &#8226;   <a href="#pydoc">pydoc</a>
+ &#8226;   <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
  &#8226;   <a href="#six">six</a>
+ &#8226;   <a href="#tee">tee</a>
  &#8226;   <a href="#urllib3">urllib3</a>
  &#8226;   <a href="#urllib3._base_connection">urllib3._base_connection</a>
  &#8226;   <a href="#urllib3._collections">urllib3._collections</a>
@@ -1990,6 +1996,7 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.packaging.specifiers">pkg_resources._vendor.packaging.specifiers</a>
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.core">pkg_resources._vendor.pyparsing.core</a>
  &#8226;   <a href="#selectors">selectors</a>
+ &#8226;   <a href="#tee.tee">tee.tee</a>
  &#8226;   <a href="#typing">typing</a>
  &#8226;   <a href="#typing_extensions">typing_extensions</a>
 
@@ -4786,6 +4793,10 @@ imported by:
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#pprint">pprint</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#queue">queue</a>
  &#8226;   <a href="#requests.compat">requests.compat</a>
@@ -5028,6 +5039,7 @@ imported by:
  &#8226;   <a href="#ast">ast</a>
  &#8226;   <a href="#asyncio.staggered">asyncio.staggered</a>
  &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
+ &#8226;   <a href="#decorator">decorator</a>
  &#8226;   <a href="#getpass">getpass</a>
  &#8226;   <a href="#glob">glob</a>
  &#8226;   <a href="#http.server">http.server</a>
@@ -5053,6 +5065,10 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.packaging._musllinux">pkg_resources._vendor.packaging._musllinux</a>
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.testing">pkg_resources._vendor.pyparsing.testing</a>
  &#8226;   <a href="#pkg_resources._vendor.zipp">pkg_resources._vendor.zipp</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#requests.utils">requests.utils</a>
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#traceback">traceback</a>
@@ -6790,6 +6806,7 @@ imported by:
  &#8226;   <a href="#packaging._manylinux">packaging._manylinux</a>
  &#8226;   <a href="#pkg_resources._vendor.appdirs">pkg_resources._vendor.appdirs</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging._manylinux">pkg_resources._vendor.packaging._manylinux</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
  &#8226;   <a href="#websockets.__main__">websockets.__main__</a>
 
   </div>
@@ -6937,6 +6954,7 @@ imported by:
  &#8226;   <a href="#oauthlib.oauth2.rfc6749.utils">oauthlib.oauth2.rfc6749.utils</a>
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.common">pkg_resources._vendor.pyparsing.common</a>
  &#8226;   <a href="#plistlib">plistlib</a>
+ &#8226;   <a href="#psutil">psutil</a>
  &#8226;   <a href="#requests.models">requests.models</a>
  &#8226;   <a href="#requests.sessions">requests.sessions</a>
  &#8226;   <a href="#urllib3.connection">urllib3.connection</a>
@@ -6961,6 +6979,27 @@ imported by:
     <a href="#fractions">fractions</a>
  &#8226;   <a href="#statistics">statistics</a>
  &#8226;   <a href="#xmlrpc.client">xmlrpc.client</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="decorator"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/decorator.py" type="text/plain"><tt>decorator</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#inspect">inspect</a>
+ &#8226;   <a href="#itertools">itertools</a>
+ &#8226;   <a href="#operator">operator</a>
+ &#8226;   <a href="#re">re</a>
+ &#8226;   <a href="#sys">sys</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
 
   </div>
 
@@ -7014,7 +7053,8 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>dummy_threading</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#requests.cookies">requests.cookies</a>
+    <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#requests.cookies">requests.cookies</a>
 
   </div>
 
@@ -10073,6 +10113,8 @@ imported by:
  &#8226;   <a href="#packaging._elffile">packaging._elffile</a>
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.core">pkg_resources._vendor.pyparsing.core</a>
  &#8226;   <a href="#plistlib">plistlib</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#py_compile">py_compile</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#signal">signal</a>
@@ -10107,6 +10149,9 @@ imported by:
  &#8226;   <a href="#multiprocessing.shared_memory">multiprocessing.shared_memory</a>
  &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pkg_resources">pkg_resources</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#socket">socket</a>
  &#8226;   <a href="#ssl">ssl</a>
@@ -10139,7 +10184,8 @@ imported by:
   <a target="code" href="" type="text/plain"><tt>fcntl</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
-    <a href="#subprocess">subprocess</a>
+    <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#subprocess">subprocess</a>
 
   </div>
 
@@ -14199,6 +14245,10 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.util">pkg_resources._vendor.pyparsing.util</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#pygments.formatters.html">pygments.formatters.html</a>
  &#8226;   <a href="#re">re</a>
  &#8226;   <a href="#six">six</a>
@@ -16661,6 +16711,7 @@ imports:
  &#8226;   <a href="#importlib">importlib</a>
  &#8226;   <a href="#importlib._bootstrap">importlib._bootstrap</a>
  &#8226;   <a href="#importlib._bootstrap_external">importlib._bootstrap_external</a>
+ &#8226;   <a href="#importlib.machinery">importlib.machinery</a>
  &#8226;   <a href="#sys">sys</a>
  &#8226;   <a href="#warnings">warnings</a>
 
@@ -16806,6 +16857,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#imp">imp</a>
+ &#8226;   <a href="#importlib">importlib</a>
  &#8226;   <a href="#importlib.abc">importlib.abc</a>
  &#8226;   <a href="#inspect">inspect</a>
  &#8226;   <a href="#packaging.tags">packaging.tags</a>
@@ -17240,6 +17292,7 @@ imported by:
  &#8226;   <a href="#asyncio.tasks">asyncio.tasks</a>
  &#8226;   <a href="#bdb">bdb</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
+ &#8226;   <a href="#decorator">decorator</a>
  &#8226;   <a href="#flet_core.utils">flet_core.utils</a>
  &#8226;   <a href="#httpcore._trace">httpcore._trace</a>
  &#8226;   <a href="#httpx._content">httpx._content</a>
@@ -17252,6 +17305,7 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.diagram">pkg_resources._vendor.pyparsing.diagram</a>
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.exceptions">pkg_resources._vendor.pyparsing.exceptions</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pyi_rth_inspect.py">pyi_rth_inspect.py</a>
  &#8226;   <a href="#typing_extensions">typing_extensions</a>
@@ -17398,6 +17452,7 @@ imported by:
  &#8226;   <a href="#concurrent.futures.thread">concurrent.futures.thread</a>
  &#8226;   <a href="#cryptography.hazmat.backends.openssl.backend">cryptography.hazmat.backends.openssl.backend</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
+ &#8226;   <a href="#decorator">decorator</a>
  &#8226;   <a href="#glob">glob</a>
  &#8226;   <a href="#http.server">http.server</a>
  &#8226;   <a href="#httpcore._async.connection">httpcore._async.connection</a>
@@ -18271,6 +18326,24 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="kill"></a>
+  <a target="code" href="///C:/Users/refa3/Documents/GitHub/webfilter/kill.py" type="text/plain"><tt>kill</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#psutil">psutil</a>
+ &#8226;   <a href="#pyuac">pyuac</a>
+ &#8226;   <a href="#subprocess">subprocess</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#flet_app.py">flet_app.py</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="linecache"></a>
   <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/linecache.py" type="text/plain"><tt>linecache</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -18405,6 +18478,8 @@ imported by:
  &#8226;   <a href="#packaging.tags">packaging.tags</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging.tags">pkg_resources._vendor.packaging.tags</a>
  &#8226;   <a href="#pyi_rth_localhost_fletd.py">pyi_rth_localhost_fletd.py</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
+ &#8226;   <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
  &#8226;   <a href="#requests">requests</a>
  &#8226;   <a href="#urllib3">urllib3</a>
  &#8226;   <a href="#urllib3.connection">urllib3.connection</a>
@@ -20464,6 +20539,7 @@ imported by:
     <a href="#collections">collections</a>
  &#8226;   <a href="#copyreg">copyreg</a>
  &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#decorator">decorator</a>
  &#8226;   <a href="#email._header_value_parser">email._header_value_parser</a>
  &#8226;   <a href="#enum">enum</a>
  &#8226;   <a href="#flet_app.py">flet_app.py</a>
@@ -20630,6 +20706,10 @@ imported by:
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#plistlib">plistlib</a>
  &#8226;   <a href="#posixpath">posixpath</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#py_compile">py_compile</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pygments.formatters.html">pygments.formatters.html</a>
@@ -20643,6 +20723,8 @@ imported by:
  &#8226;   <a href="#pyi_rth_pythoncom.py">pyi_rth_pythoncom.py</a>
  &#8226;   <a href="#pyi_rth_pywintypes.py">pyi_rth_pywintypes.py</a>
  &#8226;   <a href="#pyi_rth_win32comgenpy.py">pyi_rth_win32comgenpy.py</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
+ &#8226;   <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
  &#8226;   <a href="#pywintypes">pywintypes</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#requests.auth">requests.auth</a>
@@ -20657,6 +20739,7 @@ imported by:
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#sysconfig">sysconfig</a>
  &#8226;   <a href="#tarfile">tarfile</a>
+ &#8226;   <a href="#tee.tee">tee.tee</a>
  &#8226;   <a href="#tempfile">tempfile</a>
  &#8226;   <a href="#threading">threading</a>
  &#8226;   <a href="#urllib.request">urllib.request</a>
@@ -22387,6 +22470,7 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.appdirs">pkg_resources._vendor.appdirs</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging.markers">pkg_resources._vendor.packaging.markers</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging.tags">pkg_resources._vendor.packaging.tags</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#uuid">uuid</a>
 
@@ -22501,6 +22585,151 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="psutil"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/psutil/__init__.py" type="text/plain"><tt>psutil</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#collections">collections</a>
+ &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._psutil_windows">psutil._psutil_windows</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
+ &#8226;   <a href="#pwd">pwd</a>
+ &#8226;   <a href="#signal">signal</a>
+ &#8226;   <a href="#socket">socket</a>
+ &#8226;   <a href="#subprocess">subprocess</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#time">time</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#kill">kill</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._psutil_windows">psutil._psutil_windows</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="psutil._common"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/psutil/_common.py" type="text/plain"><tt>psutil._common</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#collections">collections</a>
+ &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#ctypes">ctypes</a>
+ &#8226;   <a href="#enum">enum</a>
+ &#8226;   <a href="#errno">errno</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#inspect">inspect</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#socket">socket</a>
+ &#8226;   <a href="#stat">stat</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#warnings">warnings</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="psutil._compat"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/psutil/_compat.py" type="text/plain"><tt>psutil._compat</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#collections">collections</a>
+ &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#dummy_threading">dummy_threading</a>
+ &#8226;   <a href="#errno">errno</a>
+ &#8226;   <a href="#fcntl">fcntl</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#shutil">shutil</a>
+ &#8226;   <a href="#struct">struct</a>
+ &#8226;   <a href="#subprocess">subprocess</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#termios">termios</a>
+ &#8226;   <a href="#threading">threading</a>
+ &#8226;   <a href="#types">types</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="psutil._psutil_windows"></a>
+  <tt>psutil._psutil_windows</tt> <span class="moduletype"><tt>C:\Users\refa3\AppData\Local\Programs\Python\Python311\Lib\site-packages\psutil\_psutil_windows.pyd</tt></span>  <div class="import">
+imports:
+    <a href="#psutil">psutil</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="psutil._pswindows"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/psutil/_pswindows.py" type="text/plain"><tt>psutil._pswindows</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#collections">collections</a>
+ &#8226;   <a href="#contextlib">contextlib</a>
+ &#8226;   <a href="#enum">enum</a>
+ &#8226;   <a href="#errno">errno</a>
+ &#8226;   <a href="#functools">functools</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._psutil_windows">psutil._psutil_windows</a>
+ &#8226;   <a href="#signal">signal</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#time">time</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#psutil">psutil</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="pwd"></a>
   <a target="code" href="" type="text/plain"><tt>pwd</tt></a>
 <span class="moduletype">MissingModule</span>  <div class="import">
@@ -22510,6 +22739,7 @@ imported by:
  &#8226;   <a href="#netrc">netrc</a>
  &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#posixpath">posixpath</a>
+ &#8226;   <a href="#psutil">psutil</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#tarfile">tarfile</a>
@@ -29936,6 +30166,75 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="pyuac"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/pyuac/__init__.py" type="text/plain"><tt>pyuac</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#pyuac.admin">pyuac.admin</a>
+ &#8226;   <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#flet_app.py">flet_app.py</a>
+ &#8226;   <a href="#kill">kill</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
+ &#8226;   <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pyuac.admin"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/pyuac/admin.py" type="text/plain"><tt>pyuac.admin</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#logging">logging</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pyuac">pyuac</a>
+ &#8226;   <a href="#subprocess">subprocess</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#win32com.shell">win32com.shell</a>
+ &#8226;   <a href="#win32com.shell.shell">win32com.shell.shell</a>
+ &#8226;   <a href="#win32com.shell.shellcon">win32com.shell.shellcon</a>
+ &#8226;   <a href="#win32con">win32con</a>
+ &#8226;   <a href="#win32event">win32event</a>
+ &#8226;   <a href="#win32process">win32process</a>
+ &#8226;   <a href="#win32security">win32security</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pyuac">pyuac</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="pyuac.main_decorator"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/pyuac/main_decorator.py" type="text/plain"><tt>pyuac.main_decorator</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#decorator">decorator</a>
+ &#8226;   <a href="#logging">logging</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#pyuac">pyuac</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#tee">tee</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pyuac">pyuac</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="pywin"></a>
   <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/Pythonwin/pywin/__init__.py" type="text/plain"><tt>pywin</tt></a>
 <span class="moduletype">Package</span>  <div class="import">
@@ -30291,6 +30590,7 @@ imported by:
  &#8226;   <a href="#cryptography.x509.name">cryptography.x509.name</a>
  &#8226;   <a href="#csv">csv</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
+ &#8226;   <a href="#decorator">decorator</a>
  &#8226;   <a href="#difflib">difflib</a>
  &#8226;   <a href="#email._encoded_words">email._encoded_words</a>
  &#8226;   <a href="#email._header_value_parser">email._header_value_parser</a>
@@ -31281,6 +31581,7 @@ imported by:
  &#8226;   <a href="#http.server">http.server</a>
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
  &#8226;   <a href="#pkg_resources._vendor.jaraco.context">pkg_resources._vendor.jaraco.context</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
  &#8226;   <a href="#pygments.lexers._php_builtins">pygments.lexers._php_builtins</a>
  &#8226;   <a href="#pyi_rth_win32comgenpy.py">pyi_rth_win32comgenpy.py</a>
  &#8226;   <a href="#tarfile">tarfile</a>
@@ -31322,6 +31623,8 @@ imported by:
  &#8226;   <a href="#multiprocessing.resource_sharer">multiprocessing.resource_sharer</a>
  &#8226;   <a href="#multiprocessing.resource_tracker">multiprocessing.resource_tracker</a>
  &#8226;   <a href="#pdb">pdb</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#websockets.__main__">websockets.__main__</a>
 
@@ -31488,6 +31791,8 @@ imported by:
  &#8226;   <a href="#multiprocessing.reduction">multiprocessing.reduction</a>
  &#8226;   <a href="#multiprocessing.resource_sharer">multiprocessing.resource_sharer</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
  &#8226;   <a href="#requests.adapters">requests.adapters</a>
  &#8226;   <a href="#requests.utils">requests.utils</a>
  &#8226;   <a href="#socketserver">socketserver</a>
@@ -31708,6 +32013,7 @@ imported by:
  &#8226;   <a href="#pathlib">pathlib</a>
  &#8226;   <a href="#pkg_resources">pkg_resources</a>
  &#8226;   <a href="#posixpath">posixpath</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
  &#8226;   <a href="#shutil">shutil</a>
  &#8226;   <a href="#tarfile">tarfile</a>
  &#8226;   <a href="#zipfile">zipfile</a>
@@ -31820,6 +32126,7 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.packaging._musllinux">pkg_resources._vendor.packaging._musllinux</a>
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#plistlib">plistlib</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
  &#8226;   <a href="#requests.utils">requests.utils</a>
  &#8226;   <a href="#six">six</a>
  &#8226;   <a href="#tarfile">tarfile</a>
@@ -31876,6 +32183,7 @@ imported by:
  &#8226;   <a href="#flet.version">flet.version</a>
  &#8226;   <a href="#flet_runtime.app">flet_runtime.app</a>
  &#8226;   <a href="#http.server">http.server</a>
+ &#8226;   <a href="#kill">kill</a>
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
  &#8226;   <a href="#os">os</a>
  &#8226;   <a href="#packaging._musllinux">packaging._musllinux</a>
@@ -31883,10 +32191,13 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.jaraco.context">pkg_resources._vendor.jaraco.context</a>
  &#8226;   <a href="#pkg_resources._vendor.packaging._musllinux">pkg_resources._vendor.packaging._musllinux</a>
  &#8226;   <a href="#platform">platform</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pygments.formatters.img">pygments.formatters.img</a>
  &#8226;   <a href="#pygments.lexers._scilab_builtins">pygments.lexers._scilab_builtins</a>
  &#8226;   <a href="#pyi_rth_multiprocessing.py">pyi_rth_multiprocessing.py</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
  &#8226;   <a href="#uuid">uuid</a>
  &#8226;   <a href="#webbrowser">webbrowser</a>
  &#8226;   <a href="#websockets.version">websockets.version</a>
@@ -31940,6 +32251,7 @@ imported by:
  &#8226;   <a href="#ctypes._endian">ctypes._endian</a>
  &#8226;   <a href="#dataclasses">dataclasses</a>
  &#8226;   <a href="#datetime">datetime</a>
+ &#8226;   <a href="#decorator">decorator</a>
  &#8226;   <a href="#dis">dis</a>
  &#8226;   <a href="#email._header_value_parser">email._header_value_parser</a>
  &#8226;   <a href="#email.generator">email.generator</a>
@@ -32031,6 +32343,10 @@ imported by:
  &#8226;   <a href="#platform">platform</a>
  &#8226;   <a href="#posixpath">posixpath</a>
  &#8226;   <a href="#pprint">pprint</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#py_compile">py_compile</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pygments.formatters">pygments.formatters</a>
@@ -32044,6 +32360,8 @@ imported by:
  &#8226;   <a href="#pyi_rth_pkgutil.py">pyi_rth_pkgutil.py</a>
  &#8226;   <a href="#pyi_rth_pythoncom.py">pyi_rth_pythoncom.py</a>
  &#8226;   <a href="#pyi_rth_pywintypes.py">pyi_rth_pywintypes.py</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
+ &#8226;   <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
  &#8226;   <a href="#pywintypes">pywintypes</a>
  &#8226;   <a href="#quopri">quopri</a>
  &#8226;   <a href="#re._compiler">re._compiler</a>
@@ -32064,6 +32382,7 @@ imported by:
  &#8226;   <a href="#subprocess">subprocess</a>
  &#8226;   <a href="#sysconfig">sysconfig</a>
  &#8226;   <a href="#tarfile">tarfile</a>
+ &#8226;   <a href="#tee.tee">tee.tee</a>
  &#8226;   <a href="#tempfile">tempfile</a>
  &#8226;   <a href="#threading">threading</a>
  &#8226;   <a href="#tokenize">tokenize</a>
@@ -32180,6 +32499,43 @@ imported by:
 </div>
 
 <div class="node">
+  <a name="tee"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/tee/__init__.py" type="text/plain"><tt>tee</tt></a>
+<span class="moduletype">Package</span>  <div class="import">
+imports:
+    <a href="#__future__">__future__</a>
+ &#8226;   <a href="#tee.tee">tee.tee</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#pyuac.main_decorator">pyuac.main_decorator</a>
+ &#8226;   <a href="#tee.tee">tee.tee</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="tee.tee"></a>
+  <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/tee/tee.py" type="text/plain"><tt>tee.tee</tt></a>
+<span class="moduletype">SourceModule</span>  <div class="import">
+imports:
+    <a href="#abc">abc</a>
+ &#8226;   <a href="#os">os</a>
+ &#8226;   <a href="#sys">sys</a>
+ &#8226;   <a href="#tee">tee</a>
+
+  </div>
+  <div class="import">
+imported by:
+    <a href="#tee">tee</a>
+
+  </div>
+
+</div>
+
+<div class="node">
   <a name="tempfile"></a>
   <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/tempfile.py" type="text/plain"><tt>tempfile</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
@@ -32229,6 +32585,7 @@ imported by:
 <span class="moduletype">MissingModule</span>  <div class="import">
 imported by:
     <a href="#getpass">getpass</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
  &#8226;   <a href="#tty">tty</a>
 
   </div>
@@ -32318,6 +32675,9 @@ imported by:
  &#8226;   <a href="#multiprocessing.synchronize">multiprocessing.synchronize</a>
  &#8226;   <a href="#multiprocessing.util">multiprocessing.util</a>
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.core">pkg_resources._vendor.pyparsing.core</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pyi_rth_multiprocessing.py">pyi_rth_multiprocessing.py</a>
  &#8226;   <a href="#pywin.dialogs.status">pywin.dialogs.status</a>
@@ -32399,6 +32759,8 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.jaraco.functools">pkg_resources._vendor.jaraco.functools</a>
  &#8226;   <a href="#pkg_resources._vendor.more_itertools.more">pkg_resources._vendor.more_itertools.more</a>
  &#8226;   <a href="#pprint">pprint</a>
+ &#8226;   <a href="#psutil">psutil</a>
+ &#8226;   <a href="#psutil._pswindows">psutil._pswindows</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#pygments.lexer">pygments.lexer</a>
  &#8226;   <a href="#pywin.dialogs.status">pywin.dialogs.status</a>
@@ -32654,6 +33016,7 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.util">pkg_resources._vendor.pyparsing.util</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
  &#8226;   <a href="#pprint">pprint</a>
+ &#8226;   <a href="#psutil._compat">psutil._compat</a>
  &#8226;   <a href="#pygments.formatters">pygments.formatters</a>
  &#8226;   <a href="#pygments.lexers">pygments.lexers</a>
  &#8226;   <a href="#queue">queue</a>
@@ -34292,6 +34655,7 @@ imported by:
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.core">pkg_resources._vendor.pyparsing.core</a>
  &#8226;   <a href="#pkg_resources._vendor.pyparsing.util">pkg_resources._vendor.pyparsing.util</a>
  &#8226;   <a href="#pkgutil">pkgutil</a>
+ &#8226;   <a href="#psutil._common">psutil._common</a>
  &#8226;   <a href="#pydoc">pydoc</a>
  &#8226;   <a href="#random">random</a>
  &#8226;   <a href="#re">re</a>
@@ -36313,13 +36677,13 @@ imported by:
 <span class="moduletype">Package</span>  <div class="import">
 imports:
     <a href="#win32com">win32com</a>
- &#8226;   <a href="#win32com.shell.shell">win32com.shell.shell</a>
  &#8226;   <a href="#win32com.shell.shellcon">win32com.shell.shellcon</a>
 
   </div>
   <div class="import">
 imported by:
     <a href="#pkg_resources._vendor.appdirs">pkg_resources._vendor.appdirs</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
  &#8226;   <a href="#win32com.shell.shell">win32com.shell.shell</a>
  &#8226;   <a href="#win32com.shell.shellcon">win32com.shell.shellcon</a>
 
@@ -36337,7 +36701,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#pkg_resources._vendor.appdirs">pkg_resources._vendor.appdirs</a>
- &#8226;   <a href="#win32com.shell">win32com.shell</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
 
   </div>
 
@@ -36354,6 +36718,7 @@ imports:
   <div class="import">
 imported by:
     <a href="#pkg_resources._vendor.appdirs">pkg_resources._vendor.appdirs</a>
+ &#8226;   <a href="#pyuac.admin">pyuac.admin</a>
  &#8226;   <a href="#win32com.shell">win32com.shell</a>
 
   </div>
@@ -36406,13 +36771,44 @@ imported by:
   <a target="code" href="///C:/Users/refa3/AppData/Local/Programs/Python/Python311/Lib/site-packages/win32/lib/win32con.py" type="text/plain"><tt>win32con</tt></a>
 <span class="moduletype">SourceModule</span>  <div class="import">
 imported by:
-    <a href="#pywin.dialogs.list">pywin.dialogs.list</a>
+    <a href="#pyuac.admin">pyuac.admin</a>
+ &#8226;   <a href="#pywin.dialogs.list">pywin.dialogs.list</a>
  &#8226;   <a href="#pywin.dialogs.status">pywin.dialogs.status</a>
  &#8226;   <a href="#pywin.mfc.dialog">pywin.mfc.dialog</a>
  &#8226;   <a href="#pywin.mfc.window">pywin.mfc.window</a>
  &#8226;   <a href="#win32com.client.selecttlb">win32com.client.selecttlb</a>
  &#8226;   <a href="#win32com.server.policy">win32com.server.policy</a>
  &#8226;   <a href="#win32com.util">win32com.util</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="win32event"></a>
+  <tt>win32event</tt> <span class="moduletype"><tt>C:\Users\refa3\AppData\Local\Programs\Python\Python311\Lib\site-packages\win32\win32event.pyd</tt></span>  <div class="import">
+imported by:
+    <a href="#pyuac.admin">pyuac.admin</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="win32process"></a>
+  <tt>win32process</tt> <span class="moduletype"><tt>C:\Users\refa3\AppData\Local\Programs\Python\Python311\Lib\site-packages\win32\win32process.pyd</tt></span>  <div class="import">
+imported by:
+    <a href="#pyuac.admin">pyuac.admin</a>
+
+  </div>
+
+</div>
+
+<div class="node">
+  <a name="win32security"></a>
+  <tt>win32security</tt> <span class="moduletype"><tt>C:\Users\refa3\AppData\Local\Programs\Python\Python311\Lib\site-packages\win32\win32security.pyd</tt></span>  <div class="import">
+imported by:
+    <a href="#pyuac.admin">pyuac.admin</a>
 
   </div>
 

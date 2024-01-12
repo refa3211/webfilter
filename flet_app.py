@@ -3,7 +3,8 @@ from flet import TextField, Checkbox, ElevatedButton, Text, Row, Column
 from flet_core import control, event, ControlEvent
 import os
 import requests
-# from pyuac import main_requires_admin
+from kill import kill_process_by_pid, get_pid_by_service
+from pyuac import main_requires_admin
 
 # Constants
 full_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts"
@@ -13,7 +14,7 @@ counter = 0
 
 
 # Decorator to require admin privileges
-# @main_requires_admin
+@main_requires_admin
 def main(page: ft.page) -> None:
     # Page settings
     page.title = 'Login'
@@ -33,12 +34,16 @@ def main(page: ft.page) -> None:
     def backup():
         toastmessage("Backup existing file")
         os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
-
+    def killin():
+        try:
+            toastmessage(f"trying kill process {get_pid_by_service('dnscache')}")
+            kill_process_by_pid(get_pid_by_service("dnscache"))
+        except Exception as e:
+            toastmessage(e)
     # Function to reset the hosts file
     def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts"):
-        toastmessage("rest file...")
         with open(hosts_path, 'w') as hosts_file:
-            hosts_file.write("127.0.0.1 localhost")
+            hosts_file.write("")
             toastmessage("File has been reset")
 
     # Function to download hosts file
@@ -82,6 +87,7 @@ def main(page: ft.page) -> None:
     backup_button: ElevatedButton = ElevatedButton(text="Backup", width=200, on_click=lambda e: backup())
     hardrest_button: ElevatedButton = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
 
+    kill_button: ElevatedButton = ElevatedButton(text="Kill Process", width=200, on_click=lambda e: killin())
     # Function to display toast messages
     def toastmessage(text):
         page.snack_bar = ft.SnackBar(ft.Text(text))
@@ -101,7 +107,8 @@ def main(page: ft.page) -> None:
                             activate_button,
                             disable_button,
                             backup_button,
-                            hardrest_button
+                            hardrest_button,
+                            kill_button
                         ])
                     ], alignment=ft.MainAxisAlignment.CENTER
                 )
