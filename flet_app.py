@@ -11,6 +11,11 @@ full_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alterna
 Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
 credentials = {"admin": "admin", "user2": "pass456", "user3": "pass789"}
 counter = 0
+import shutil
+
+hosts_file = r"C:\Windows\System32\drivers\etc\hosts"
+hosts_back = r"C:\Windows\System32\drivers\etc\hosts.bak"
+hosts_temp = r"C:\Windows\System32\drivers\etc\hosts.tmp"
 
 
 # Decorator to require admin privileges
@@ -45,32 +50,30 @@ def main(page: ft.page) -> None:
             toastmessage(e)
 
     # Function to reset the hosts file
-    def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts.clean"):
-        killin()
+    def hardrest(hosts_path=hosts_temp):
         try:
-            with open(hosts_path, 'w') as hosts_file:
-                hosts_file.write("")
-            os.system(
-                'copy "C:\Windows\System32\drivers\etc\hosts.clean" "C:\Windows\system32\drivers\etc\hosts" /y')
+            killin()
+            with open(hosts_path, 'w') as writehosts:
+                writehosts.write("")
+            shutil.copy(hosts_temp, hosts_file)
             open_dlg("File has been reset")
         except Exception as e:
             open_dlg(e)
 
     # Function to download hosts file
     def download_hosts_file(url=full_hosts):
+        global hosts_temp
         try:
             toastmessage("Starting Download ...")
             response = requests.get(url)
             if response.status_code == 200:
                 print(response.status_code)
-                hosts_path = r"C:\Windows\System32\drivers\etc\hosts.pre"
                 try:
                     toastmessage("Loading...")
-                    with open(hosts_path, 'w') as hosts_file:
-                        hosts_file.write(response.text)
+                    with open(hosts_temp, 'w') as write_hosts:
+                        write_hosts.write(response.text)
                     killin()
-                    os.system(
-                        'copy "C:\Windows\System32\drivers\etc\hosts.pre" "C:\Windows\system32\drivers\etc\hosts" /y')
+                    shutil.copy(hosts_temp, hosts_file)
                     open_dlg("Setting has been applied")
                     print("Hosts file replaced successfully.")
                 except Exception as e:
