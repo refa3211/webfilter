@@ -34,12 +34,14 @@ def main(page: ft.page) -> None:
     def backup():
         toastmessage("Backup existing file")
         os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
+
     def killin():
         try:
             toastmessage(f"trying kill process {get_pid_by_service('dnscache')}")
             kill_process_by_pid(get_pid_by_service("dnscache"))
         except Exception as e:
             toastmessage(e)
+
     # Function to reset the hosts file
     def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts"):
         with open(hosts_path, 'w') as hosts_file:
@@ -88,6 +90,7 @@ def main(page: ft.page) -> None:
     hardrest_button: ElevatedButton = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
 
     kill_button: ElevatedButton = ElevatedButton(text="Kill Process", width=200, on_click=lambda e: killin())
+
     # Function to display toast messages
     def toastmessage(text):
         page.snack_bar = ft.SnackBar(ft.Text(text))
