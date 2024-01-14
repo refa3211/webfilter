@@ -33,59 +33,63 @@ def main(page: ft.page) -> None:
     # Function to back up the hosts file
     def backup():
         toastmessage("Backup existing file")
-        os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
+        os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.bak"')
+        open_dlg()
 
     def killin():
         try:
+            toastmessage("kill process..")
             toastmessage(f"trying kill process {get_pid_by_service('dnscache')}")
             kill_process_by_pid(get_pid_by_service("dnscache"))
         except Exception as e:
             toastmessage(e)
 
     # Function to reset the hosts file
-    def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts"):
-        with open(hosts_path, 'w') as hosts_file:
-            hosts_file.write("")
-            toastmessage("File has been reset")
+    def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts.clean"):
+        killin()
+        try:
+            with open(hosts_path, 'w') as hosts_file:
+                hosts_file.write("")
+            os.system(
+                'copy "C:\Windows\System32\drivers\etc\hosts.clean" "C:\Windows\system32\drivers\etc\hosts" /y')
+            open_dlg("File has been reset")
+        except Exception as e:
+            open_dlg(e)
 
     # Function to download hosts file
     def download_hosts_file(url=full_hosts):
         try:
             toastmessage("Starting Download ...")
-            page.update()
             response = requests.get(url)
             if response.status_code == 200:
                 print(response.status_code)
-                hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
+                hosts_path = r"C:\Windows\System32\drivers\etc\hosts.pre"
                 try:
                     toastmessage("Loading...")
-                    os.system(
-                        'copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
-                    toastmessage("creating Backup")
                     with open(hosts_path, 'w') as hosts_file:
                         hosts_file.write(response.text)
-                    toastmessage("Setting has been applied")
+                    killin()
+                    os.system(
+                        'copy "C:\Windows\System32\drivers\etc\hosts.pre" "C:\Windows\system32\drivers\etc\hosts" /y')
+                    open_dlg("Setting has been applied")
                     print("Hosts file replaced successfully.")
                 except Exception as e:
                     print(f"Error while setup settings [61]: {e}")
                     open_dlg(e)
-                    page.update()
                     return e
                 return response.text
             else:
                 open_dlg(response.status_code)
-                page.update()
                 print(f"Failed to download hosts file. Status code: {response.status_code}")
         except Exception as e:
             open_dlg(e)
-            page.update()
             print(f"Error downloading hosts file: {e}")
 
     # Buttons
     activate_button: ElevatedButton = ElevatedButton(text="Activate", width=200,
                                                      on_click=lambda e: download_hosts_file())
-    disable_button: ElevatedButton = ElevatedButton(text="Disable", width=200,
-                                                    on_click=lambda e: download_hosts_file(Unified_hosts))
+    light_filter: ElevatedButton = ElevatedButton(text="Light Filter", width=200,
+                                                  on_click=lambda e: download_hosts_file(Unified_hosts))
     backup_button: ElevatedButton = ElevatedButton(text="Backup", width=200, on_click=lambda e: backup())
     hardrest_button: ElevatedButton = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
 
@@ -108,7 +112,7 @@ def main(page: ft.page) -> None:
                     controls=[
                         Column([
                             activate_button,
-                            disable_button,
+                            light_filter,
                             backup_button,
                             hardrest_button,
                             kill_button
