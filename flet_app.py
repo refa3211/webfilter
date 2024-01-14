@@ -5,12 +5,16 @@ import os
 import requests
 from kill import kill_process_by_pid, get_pid_by_service
 from pyuac import main_requires_admin
+import shutil
 
 # Constants
 full_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts"
 Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
 credentials = {"admin": "admin", "user2": "pass456", "user3": "pass789"}
 counter = 0
+hosts_file = r"C:\Windows\System32\drivers\etc\hosts"
+hosts_backup = r"C:\Windows\System32\drivers\etc\hosts.bak"
+hosts_temp = r"C:\Windows\System32\drivers\etc\hosts.temp"
 
 
 # Decorator to require admin privileges
@@ -33,7 +37,8 @@ def main(page: ft.page) -> None:
     # Function to back up the hosts file
     def backup():
         toastmessage("Backup existing file")
-        os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
+        shutil.copy(hosts_file, hosts_backup)
+        # os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
     def killin():
         try:
             toastmessage(f"trying kill process {get_pid_by_service('dnscache')}")
@@ -48,18 +53,17 @@ def main(page: ft.page) -> None:
 
     # Function to download hosts file
     def download_hosts_file(url=full_hosts):
+        global hosts_file
         try:
             toastmessage("Starting Download ...")
-            page.update()
             response = requests.get(url)
             if response.status_code == 200:
                 print(response.status_code)
-                hosts_path = r"C:\Windows\System32\drivers\etc\hosts"
+                hosts_path = hosts_temp
                 try:
-                    toastmessage("Loading...")
-                    os.system(
-                        'copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
                     toastmessage("creating Backup")
+                    backup()
+
                     with open(hosts_path, 'w') as hosts_file:
                         hosts_file.write(response.text)
                     toastmessage("Setting has been applied")
