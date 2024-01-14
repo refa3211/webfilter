@@ -1,17 +1,16 @@
 import flet as ft
-from flet import TextField, Checkbox, ElevatedButton, Text, Row, Column
+from flet import TextField, ElevatedButton, Text, Row, Column
 from flet_core import control, event, ControlEvent
-import os
-import requests
+import shutil, os, requests
 from kill import kill_process_by_pid, get_pid_by_service
 from pyuac import main_requires_admin
 
 # Constants
 full_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts"
 Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
-credentials = {"admin": "admin", "user2": "pass456", "user3": "pass789"}
+credentials = {"admin": "admin", "user2": "pass456"}
 counter = 0
-import shutil
+
 
 hosts_file = r"C:\Windows\System32\drivers\etc\hosts"
 hosts_back = r"C:\Windows\System32\drivers\etc\hosts.bak"
@@ -38,22 +37,22 @@ def main(page: ft.page) -> None:
     # Function to back up the hosts file
     def backup():
         toastmessage("Backup existing file")
-        os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.bak"')
-        open_dlg()
+        shutil.copy(hosts_file, hosts_back)
+        # open_dlg()
 
     def killin():
         try:
-            toastmessage("kill process..")
             toastmessage(f"trying kill process {get_pid_by_service('dnscache')}")
             kill_process_by_pid(get_pid_by_service("dnscache"))
         except Exception as e:
             toastmessage(e)
 
     # Function to reset the hosts file
-    def hardrest(hosts_path=hosts_temp):
+    def hardrest():
+        global hosts_temp, hosts_file
         try:
             killin()
-            with open(hosts_path, 'w') as writehosts:
+            with open(hosts_temp, 'w') as writehosts:
                 writehosts.write("")
             shutil.copy(hosts_temp, hosts_file)
             open_dlg("File has been reset")
@@ -72,20 +71,21 @@ def main(page: ft.page) -> None:
                     toastmessage("Loading...")
                     with open(hosts_temp, 'w') as write_hosts:
                         write_hosts.write(response.text)
+                    os.system('ipconfig /flushdns')
                     killin()
                     shutil.copy(hosts_temp, hosts_file)
                     open_dlg("Setting has been applied")
                     print("Hosts file replaced successfully.")
                 except Exception as e:
-                    print(f"Error while setup settings [61]: {e}")
+                    print(f"Error while setup settings [80]: {e}")
                     open_dlg(e)
                     return e
-                return response.text
+
             else:
-                open_dlg(response.status_code)
+                open_dlg(f"Failed to download hosts file. Status code: {response.status_code}")
                 print(f"Failed to download hosts file. Status code: {response.status_code}")
         except Exception as e:
-            open_dlg(e)
+            open_dlg(f"Error downloading hosts file: {e}")
             print(f"Error downloading hosts file: {e}")
 
     # Buttons
