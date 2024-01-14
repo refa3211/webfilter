@@ -11,7 +11,6 @@ Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alte
 credentials = {"admin": "admin", "user2": "pass456"}
 counter = 0
 
-
 hosts_file = r"C:\Windows\System32\drivers\etc\hosts"
 hosts_back = r"C:\Windows\System32\drivers\etc\hosts.bak"
 hosts_temp = r"C:\Windows\System32\drivers\etc\hosts.tmp"
@@ -26,6 +25,7 @@ def main(page: ft.page) -> None:
     page.theme_mode = ft.ThemeMode.LIGHT
     page.window_width = 750
     page.window_height = 600
+    pr = ft.ProgressRing(width=16, height=16, stroke_width=2)
 
     # Function to open a dialog
     def open_dlg(e):
@@ -39,6 +39,17 @@ def main(page: ft.page) -> None:
         toastmessage("Backup existing file")
         shutil.copy(hosts_file, hosts_back)
         # open_dlg()
+
+    def ring():
+        pri = ft.ProgressRing(width=16, height=16, stroke_width=2)
+
+        page.add(
+            ft.Row([pri]),
+            ft.Column(
+                [ft.ProgressRing()],
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+            ),
+        )
 
     def killin():
         try:
@@ -64,13 +75,16 @@ def main(page: ft.page) -> None:
         global hosts_temp
         try:
             toastmessage("Starting Download ...")
+            ring()
             response = requests.get(url)
             if response.status_code == 200:
                 print(response.status_code)
                 try:
+
                     toastmessage("Loading...")
                     with open(hosts_temp, 'w') as write_hosts:
                         write_hosts.write(response.text)
+
                     os.system('ipconfig /flushdns')
                     killin()
                     shutil.copy(hosts_temp, hosts_file)
