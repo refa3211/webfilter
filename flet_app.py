@@ -47,7 +47,7 @@ def main(page: ft.page) -> None:
             ft.Row([pri]),
             ft.Column(
                 [ft.ProgressRing()],
-                horizontal_alignment=ft.CrossAxisAlignment.CENTER,
+                horizontal_alignment=ft.CrossAxisAlignment.CENTER, alignment=ft.MainAxisAlignment.CENTER
             ),
         )
 
@@ -103,14 +103,11 @@ def main(page: ft.page) -> None:
             print(f"Error downloading hosts file: {e}")
 
     # Buttons
-    activate_button: ElevatedButton = ElevatedButton(text="Activate", width=200,
-                                                     on_click=lambda e: download_hosts_file())
-    light_filter: ElevatedButton = ElevatedButton(text="Light Filter", width=200,
-                                                  on_click=lambda e: download_hosts_file(Unified_hosts))
-    backup_button: ElevatedButton = ElevatedButton(text="Backup", width=200, on_click=lambda e: backup())
-    hardrest_button: ElevatedButton = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
-
-    kill_button: ElevatedButton = ElevatedButton(text="Kill Process", width=200, on_click=lambda e: killin())
+    activate_button = ElevatedButton(text="Activate", width=200, on_click=lambda e: download_hosts_file())
+    light_filter = ElevatedButton(text="Light Filter", width=200, on_click=lambda e: download_hosts_file(Unified_hosts))
+    backup_button = ElevatedButton(text="Backup", width=200, on_click=lambda e: backup())
+    hardrest_button = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
+    kill_button = ElevatedButton(text="Kill Process", width=200, on_click=lambda e: killin())
 
     # Function to display toast messages
     def toastmessage(text):
@@ -146,11 +143,10 @@ def main(page: ft.page) -> None:
             toastmessage("Username or Password not correct!")
 
     # Page components
-    text_label: Text = Text(value="WebFilter", size=30, text_align=ft.TextAlign.CENTER)
-    text_username: TextField = TextField(label='Username', text_align=ft.TextAlign.LEFT, width=200, height=40)
-    text_password: TextField = TextField(label='Password', text_align=ft.TextAlign.LEFT, width=200, height=40,
-                                         password=True)
-    button_login: ElevatedButton = ElevatedButton(text="Login", width=200, disabled=True, on_click=on_click)
+    text_label = Text(value="WebFilter", size=30, text_align=ft.TextAlign.CENTER)
+    text_username = TextField(label='Username', text_align=ft.TextAlign.LEFT, width=200, height=40)
+    text_password = TextField(label='Password', text_align=ft.TextAlign.LEFT, width=200, height=40, password=True)
+    button_login = ElevatedButton(text="Login", width=200, disabled=True, on_click=on_click)
 
     # Function to validate login fields
     def validate(e: ControlEvent) -> None:
