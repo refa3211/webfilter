@@ -5,16 +5,12 @@ import os
 import requests
 from kill import kill_process_by_pid, get_pid_by_service
 from pyuac import main_requires_admin
-import shutil
 
 # Constants
 full_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts"
 Unified_hosts = "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
 credentials = {"admin": "admin", "user2": "pass456", "user3": "pass789"}
 counter = 0
-hosts_file = r"C:\Windows\System32\drivers\etc\hosts"
-hosts_backup = r"C:\Windows\System32\drivers\etc\hosts.bak"
-hosts_temp = r"C:\Windows\System32\drivers\etc\hosts.temp"
 
 
 # Decorator to require admin privileges
@@ -37,61 +33,68 @@ def main(page: ft.page) -> None:
     # Function to back up the hosts file
     def backup():
         toastmessage("Backup existing file")
-        shutil.copy(hosts_file, hosts_backup)
-        # os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.txt"')
+        os.system('copy "C:\Windows\System32\drivers\etc\hosts" "C:\Windows\system32\drivers\etc\hosts.bak"')
+        open_dlg()
+
     def killin():
         try:
+            toastmessage("kill process..")
             toastmessage(f"trying kill process {get_pid_by_service('dnscache')}")
             kill_process_by_pid(get_pid_by_service("dnscache"))
         except Exception as e:
             toastmessage(e)
+
     # Function to reset the hosts file
-    def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts"):
-        with open(hosts_path, 'w') as hosts_file:
-            hosts_file.write("")
-            toastmessage("File has been reset")
+    def hardrest(hosts_path="C:\Windows\System32\drivers\etc\hosts.clean"):
+        killin()
+        try:
+            with open(hosts_path, 'w') as hosts_file:
+                hosts_file.write("")
+            os.system(
+                'copy "C:\Windows\System32\drivers\etc\hosts.clean" "C:\Windows\system32\drivers\etc\hosts" /y')
+            open_dlg("File has been reset")
+        except Exception as e:
+            open_dlg(e)
 
     # Function to download hosts file
     def download_hosts_file(url=full_hosts):
-        global hosts_file
         try:
             toastmessage("Starting Download ...")
             response = requests.get(url)
             if response.status_code == 200:
                 print(response.status_code)
-                hosts_path = hosts_temp
+                hosts_path = r"C:\Windows\System32\drivers\etc\hosts.pre"
                 try:
-                    toastmessage("creating Backup")
-                    backup()
-
+                    toastmessage("Loading...")
                     with open(hosts_path, 'w') as hosts_file:
                         hosts_file.write(response.text)
-                    toastmessage("Setting has been applied")
+                    killin()
+                    os.system(
+                        'copy "C:\Windows\System32\drivers\etc\hosts.pre" "C:\Windows\system32\drivers\etc\hosts" /y')
+                    open_dlg("Setting has been applied")
                     print("Hosts file replaced successfully.")
                 except Exception as e:
                     print(f"Error while setup settings [61]: {e}")
                     open_dlg(e)
-                    page.update()
                     return e
                 return response.text
             else:
                 open_dlg(response.status_code)
-                page.update()
                 print(f"Failed to download hosts file. Status code: {response.status_code}")
         except Exception as e:
             open_dlg(e)
-            page.update()
             print(f"Error downloading hosts file: {e}")
 
     # Buttons
     activate_button: ElevatedButton = ElevatedButton(text="Activate", width=200,
                                                      on_click=lambda e: download_hosts_file())
-    disable_button: ElevatedButton = ElevatedButton(text="Disable", width=200,
-                                                    on_click=lambda e: download_hosts_file(Unified_hosts))
+    light_filter: ElevatedButton = ElevatedButton(text="Light Filter", width=200,
+                                                  on_click=lambda e: download_hosts_file(Unified_hosts))
     backup_button: ElevatedButton = ElevatedButton(text="Backup", width=200, on_click=lambda e: backup())
     hardrest_button: ElevatedButton = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
 
     kill_button: ElevatedButton = ElevatedButton(text="Kill Process", width=200, on_click=lambda e: killin())
+
     # Function to display toast messages
     def toastmessage(text):
         page.snack_bar = ft.SnackBar(ft.Text(text))
@@ -109,7 +112,7 @@ def main(page: ft.page) -> None:
                     controls=[
                         Column([
                             activate_button,
-                            disable_button,
+                            light_filter,
                             backup_button,
                             hardrest_button,
                             kill_button
