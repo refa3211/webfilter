@@ -1,7 +1,9 @@
+from concurrent.futures import ThreadPoolExecutor
 import flet as ft
 from flet import TextField, ElevatedButton, Text, Row, Column, Page
 from flet_core import control, event, ControlEvent
-import shutil, os, requests
+import shutil, os, requests, subprocess
+from kill import get_pid_by_service, kill_process_by_pid
 
 counter = 0
 hosts_file = r"C:\Windows\System32\drivers\etc\hosts"
@@ -10,26 +12,51 @@ hosts_temp = r"C:\Windows\System32\drivers\etc\hosts.tmp"
 hosts_temp2 = r"C:\Windows\System32\drivers\etc\hosts.tmp2"
 
 credentials = {"admin": "admin", "user2": "pass456"}
+##########################################################
 
 
-def downloadfile(url):
+def download_file(url, filename):
     response = requests.get(url)
-    if response.status_code == 200:
-        if "fakenews" in url:
-            print(response.status_code)
-            with open(hosts_temp, 'w') as tempfile:
-                tempfile.write(response.text)
-                print("finis writing")
-                return
-        else:
-            print(response.status_code)
-            with open(hosts_temp2, 'w') as tempfile2:
-                tempfile2.write(response.text)
-                print("finis writing temp2")
-            return
-    else:
-        print("failed download")
-        return "Failed"
+    with open(filename, 'wb') as file:
+        file.write(response.content)
+        print("file is download")
+
+urls = [
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts",
+    "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts"
+
+]
+filenames = [hosts_temp, hosts_temp2]
+# kill_process_by_pid(get_pid_by_service("Dnscache"))
+
+with ThreadPoolExecutor(max_workers=2) as executor:
+    # Download files concurrently
+    executor.map(download_file, urls, filenames)
+
+print("Download complete.")
+
+
+#################################################################
+
+
+# def downloadfile(url):
+#     response = requests.get(url)
+#     if response.status_code == 200:
+#         if "fakenews" in url:
+#             print(response.status_code)
+#             with open(hosts_temp, 'w') as tempfile:
+#                 tempfile.write(response.text)
+#                 print("finish writing temp 1")
+#                 return
+#         else:
+#             print(response.status_code)
+#             with open(hosts_temp2, 'w') as tempfile2:
+#                 tempfile2.write(response.text)
+#                 print("finish writing temp2")
+#             return
+#     else:
+#         print("failed download")
+#         return "Failed"
 
 
 def clenhost():
@@ -41,13 +68,6 @@ def clenhost():
             print("File has been reset")
     except Exception as e:
         return e
-
-
-clenhost()
-# Constants
-full_hosts = downloadfile(
-    "https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/fakenews-gambling-porn-social-only/hosts")
-unified_hosts = downloadfile("https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/porn-only/hosts")
 
 
 def main(page: ft.page) -> None:
@@ -65,6 +85,11 @@ def main(page: ft.page) -> None:
         dlg.open = True
         page.update()
 
+    def backup():
+        toastmessage("Backup file")
+        shutil.copy(hosts_file, hosts_back)
+        print("Backup file")
+
     def restore():
         toastmessage("restore file")
         shutil.copy(hosts_back, hosts_file)
@@ -81,25 +106,31 @@ def main(page: ft.page) -> None:
             open_dlg(e)
             return e
 
-
     def change_hosts(filtertype="F"):
-        global hosts_temp, full_hosts, unified_hosts
+        global hosts_temp
         try:
             if filtertype == "F":
                 shutil.copy(hosts_temp, hosts_file)
             else:
                 shutil.copy(hosts_temp2, hosts_file)
-            # os.system('ipconfig /flushdns')
+            kill_process_by_pid(get_pid_by_service("dnscache"))
+            subprocess.run(['ipconfig', '/flushdns'],
+                           stdout=subprocess.PIPE,
+                           stderr=subprocess.PIPE,
+                           creationflags=subprocess.CREATE_NO_WINDOW,
+                           text=True)
+
             open_dlg("Setting has been applied")
             print("Hosts file replaced successfully.")
             return 0
         except Exception as e:
-            open_dlg(f"Error change setting")
-            print(f"Error change setting")
+            open_dlg(f"Error change setting {e}")
+            print(f"Error change setting {e}")
 
     # Buttons
     activate_button = ElevatedButton(text="Activate", width=200, on_click=lambda e: change_hosts())
     light_filter = ElevatedButton(text="Light Filter", width=200, on_click=lambda e: change_hosts("U"))
+    backup_button = ElevatedButton(text="Backup", width=200, on_click=lambda e: backup())
     restore_button = ElevatedButton(text="Restore", width=200, on_click=lambda e: restore())
     hardrest_button = ElevatedButton(text="Hard Reset", width=200, on_click=lambda e: hardrest())
 
@@ -121,6 +152,7 @@ def main(page: ft.page) -> None:
                         Column([
                             activate_button,
                             light_filter,
+                            backup_button,
                             restore_button,
                             hardrest_button
                         ])
@@ -170,8 +202,8 @@ def main(page: ft.page) -> None:
 
 
 # Run the app
-# try:
-ft.app(target=main)
-# finally:
-#     os.remove("C:\Windows\System32\drivers\etc\hosts.tmp")
-#     os.remove("C:\Windows\System32\drivers\etc\hosts.tmp2")
+try:
+    ft.app(target=main)
+finally:
+    os.remove(r"C:\Windows\System32\drivers\etc\hosts.tmp")
+    os.remove(r"C:\Windows\System32\drivers\etc\hosts.tmp2")
