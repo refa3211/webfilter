@@ -61772,10 +61772,15 @@
 0.0.0.0 mixch.tv
 0.0.0.0 lobi.co
 # blacklist
-#
-# The contents of this file (containing a listing of additional domains in
-# 'hosts' file format) are appended to the unified hosts file during the
-# update process. For example, uncomment the following line to block
-# 'example.com':
 
-# 0.0.0.0 example.com
+
+0.0.0.0 www.youtube.com
+0.0.0.0 flashx.tv
+0.0.0.0 netfilx.com
+0.0.0.0 
+0.0.0.0
+0.0.0.0
+0.0.0.0
+0.0.0.0
+0.0.0.0
+0.0.0.0
